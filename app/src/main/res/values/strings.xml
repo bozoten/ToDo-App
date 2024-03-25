@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">COMP3025-W2024-Week9</string>
+    <string name="title_text">To Do</string>
+    <string name="subtitle_text">11-12-24</string>
+    <string name="add_movie">Add Movie</string>
+    <string name="update_movie">Update Movie</string>
+    <string name="delete_movie">Delete Movie</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="title_prompt">Task: </string>
+    <string name="desc_prompt">Notes: </string>
+</resources>

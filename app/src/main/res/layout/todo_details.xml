@@ -27,6 +27,7 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:text="Completed"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 tools:layout_conversion_absoluteHeight="0dp"
@@ -49,18 +50,21 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/buttonColour"
                 android:text="Update" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/buttonColour"
                 android:text="Delete" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/buttonColour"
                 android:text="Cancel" />
         </LinearLayout>
 
@@ -76,6 +80,7 @@
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:text="@string/desc_prompt"
+                android:textColor="@color/black"
                 android:textSize="@dimen/cell_text_size"
                 android:textStyle="bold"
                 tools:layout_conversion_absoluteHeight="0dp"
@@ -108,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/title_prompt"
+                android:textColor="@color/black"
                 android:textSize="@dimen/cell_text_size"
                 android:textStyle="bold"
                 tools:layout_conversion_absoluteHeight="32dp"

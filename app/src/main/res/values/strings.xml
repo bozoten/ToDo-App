@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">COMP3025-W2024-Week9</string>
+    <string name="app_name">com.lakehead.assignment_4</string>
     <string name="title_text">To Do</string>
     <string name="subtitle_text">11-12-24</string>
     <string name="add_movie">Add Movie</string>

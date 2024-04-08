@@ -1,4 +1,4 @@
-package com.lakehead.assignment_3
+package com.lakehead.assignment_4
 
 import org.junit.Test
 

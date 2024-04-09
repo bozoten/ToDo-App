@@ -39,8 +39,6 @@ class ToDoCreateActivity : AppCompatActivity() {
             val formattedDate: String = sdf.format(date)
 
 
-
-
             val todo = ToDo(name, notes, hasDueDate, isCompleted, formattedDate)
             FirebaseApp.initializeApp(this)
 

@@ -26,4 +26,11 @@ class DataManager {
             .addOnFailureListener { onComplete(false) }
     }
 
+    fun updateToDo(toDoId: String, updatedToDo: ToDo, onComplete: (Boolean) -> Unit) {
+        val documentRef = collectionRef.document(toDoId)
+        documentRef.update(toDoId, updatedToDo)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
 }

@@ -6,9 +6,9 @@ import com.squareup.moshi.JsonClass
 
 
 data class ToDo (
+    val id: String = "",
     val name: String = "",
     val notes: String = "",
-    val id: Long? = null,
     val hasDueDate: Boolean? = null,
     val isCompleted: Boolean? = null,
     val dueDate: String = ""

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log;
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import kotlin.math.log
 
 
@@ -33,6 +34,16 @@ class ToDoAdapter(private val todos: List<ToDo>) :
                itemView.context.startActivity(intent)
             }
          }
+
+         completedSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+               itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.completedColor))
+            } else {
+               itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.backgroundColor))
+            }
+
+
+         }
       }
    }
 
@@ -48,7 +59,6 @@ class ToDoAdapter(private val todos: List<ToDo>) :
       holder.dateTextView.text = todo.dueDate
 
       holder.completedSwitch.isChecked = todo.completed == true
-
 
       Log.d("TAG", todo.completed.toString())
    }

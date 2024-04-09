@@ -4,4 +4,6 @@
     <color name="white">#FDEFF4</color>
     <color name="subTitle_blue">#FF5C8D</color>
     <color name="buttonColour">#FF5C8D</color>
+    <color name="completedColor">#FC8EAC</color>
+    <color name="backgroundColor">#FFC1CC</color>
 </resources>

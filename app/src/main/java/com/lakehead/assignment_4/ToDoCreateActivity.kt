@@ -1,13 +1,16 @@
 package com.lakehead.assignment_4
 
-import android.app.Activity
 import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
 import com.lakehead.assignment_4.databinding.TodoCreateBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class ToDoCreateActivity : AppCompatActivity() {
@@ -26,14 +29,19 @@ class ToDoCreateActivity : AppCompatActivity() {
             val notes = binding.taskNotesEdit.text.toString()
             val hasDueDate = true
             val isCompleted = binding.switch1.isChecked
-            val dueDate = binding.calendarView.date.toString()
+            val dueDate = binding.calendarView.date
+
+            val unixTime = dueDate
+
+            val date = Date(unixTime)
+
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formattedDate: String = sdf.format(date)
 
 
 
-            Log.d("date", dueDate)
 
-
-            val todo = ToDo(name, notes, hasDueDate, isCompleted, dueDate)
+            val todo = ToDo(name, notes, hasDueDate, isCompleted, formattedDate)
             FirebaseApp.initializeApp(this)
 
 

@@ -21,6 +21,22 @@ class DataManager {
             }
     }
 
+    fun getToDo(todoId: String, callback: (ToDo?) -> Unit) {
+        collectionRef.document(todoId)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val todo = documentSnapshot.toObject(ToDo::class.java)
+                    callback(todo)
+                } else {
+                    callback(null)
+                }
+            }
+            .addOnFailureListener { exception ->
+                callback(null)
+            }
+    }
+
     fun addToDo(toDo: ToDo, onComplete: (Boolean)-> Unit) {
         collectionRef.add(toDo)
             .addOnSuccessListener { onComplete(true) }

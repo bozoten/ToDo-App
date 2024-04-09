@@ -15,7 +15,18 @@ class TodoDetailsActivity : AppCompatActivity() {
         binding = TodoDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val todoId = intent.getStringExtra("todo_id")
 
+        if (todoId != null) {
+            val firestore = DataManager()
+            firestore.getToDo(todoId) { todo ->
+                if (todo != null) {
+                    binding.taskNameEdit.setText(todo.name)
+                    binding.taskNotesEdit.setText(todo.notes)
+                    binding.switch1.isChecked = todo.completed == true
+                }
+            }
+        }
 
         val updateButton: Button = findViewById(R.id.button)
         val deleteButton: Button = findViewById(R.id.button2)

@@ -18,6 +18,8 @@ class ToDoCreateActivity : AppCompatActivity() {
 
 
         val updateButton: Button = findViewById(R.id.button)
+        val cancelButton: Button = findViewById(R.id.button3)
+
         updateButton.setOnClickListener {
             val name = binding.taskNameEdit.text.toString()
             val notes = binding.taskNotesEdit.text.toString()
@@ -44,6 +46,11 @@ class ToDoCreateActivity : AppCompatActivity() {
             }
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+        }
+
+        cancelButton.setOnClickListener() {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
-}
 }

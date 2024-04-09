@@ -2,6 +2,7 @@ package com.lakehead.assignment_4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.FirebaseApp
 import com.lakehead.assignment_4.databinding.ActivityMainBinding
 
@@ -27,9 +28,16 @@ class MainActivity : AppCompatActivity() {
         firestore.getToDos { toDos ->
             for(toDo in toDos)
             {
-                println(toDo.name)
+                val toDoAdapter = ToDoAdapter(toDos)
+                // println(toDo.name)
+                //binding.FirstRecyclerView(toDos)
+                binding.FirstRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(this@MainActivity)
+                    adapter = toDoAdapter
+                }
             }
         }
 
     }
 }
+

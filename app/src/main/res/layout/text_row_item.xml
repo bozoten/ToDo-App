@@ -19,7 +19,7 @@
 
             <TextView
                 android:id="@+id/taskName"
-                android:layout_width="263dp"
+                android:layout_width="239dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/cell_margin"
                 android:text="@string/title_text"
@@ -33,12 +33,12 @@
                 android:layout_height="48dp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/buttonColour"
                 android:gravity="end"
-                android:text="edit" />
+                android:text="Edit" />
 
         </LinearLayout>
 

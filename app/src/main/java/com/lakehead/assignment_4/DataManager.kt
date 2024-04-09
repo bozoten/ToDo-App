@@ -1,6 +1,7 @@
 package com.lakehead.assignment_4
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 
 class DataManager {
     private val db = FirebaseFirestore.getInstance()
@@ -11,7 +12,7 @@ class DataManager {
     {
         collectionRef.get()
             .addOnSuccessListener { result ->
-                val todos = result.mapNotNull { it.toObject(ToDo)() }
+                val todos = result.mapNotNull { it.toObject<ToDo>() }
                 onComplete(todos)
             }
             .addOnFailureListener{

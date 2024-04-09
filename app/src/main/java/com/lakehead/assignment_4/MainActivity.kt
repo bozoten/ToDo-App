@@ -1,5 +1,6 @@
 package com.lakehead.assignment_4
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
                     adapter = toDoAdapter
                 }
             }
+        }
+
+        binding.addToDOFAB.setOnClickListener{
+            startActivity(Intent(this, TodoDetailsActivity::class.java))
         }
 
     }

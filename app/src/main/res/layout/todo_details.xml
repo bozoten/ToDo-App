@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="@dimen/margin_medium"
     android:layout_marginRight="@dimen/margin_medium"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    tools:context=".TodoDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

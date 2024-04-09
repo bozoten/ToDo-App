@@ -30,8 +30,7 @@
             <Switch
                 android:id="@+id/switch_1"
                 android:layout_width="48dp"
-                android:layout_height="48dp"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                android:layout_height="48dp" />
 
             <Button
                 android:id="@+id/button4"

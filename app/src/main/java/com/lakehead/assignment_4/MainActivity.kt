@@ -3,6 +3,7 @@ package com.lakehead.assignment_4
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.FirebaseApp
 import com.lakehead.assignment_4.databinding.ActivityMainBinding
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
 
+
         val firestore = DataManager()
         firestore.getToDos { toDos ->
             for(toDo in toDos)
@@ -40,9 +42,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.addToDOFAB.setOnClickListener{
-            startActivity(Intent(this, TodoDetailsActivity::class.java))
+            startActivity(Intent(this, ToDoCreateActivity::class.java))
+            finish()
         }
 
     }
+
+
 }
 

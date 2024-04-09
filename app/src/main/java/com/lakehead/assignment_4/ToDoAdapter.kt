@@ -38,4 +38,6 @@ class ToDoAdapter(private val todos: List<ToDo>) :
    override fun getItemCount(): Int {
       return todos.size
    }
+
+
 }

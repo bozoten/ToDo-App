@@ -20,4 +20,10 @@ class DataManager {
             }
     }
 
+    fun addToDo(toDo: ToDo, onComplete: (Boolean)-> Unit) {
+        collectionRef.add(toDo)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
 }

@@ -17,14 +17,17 @@ class TodoDetailsActivity : AppCompatActivity() {
         binding = TodoDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         val updateButton: Button = findViewById(R.id.button)
         updateButton.setOnClickListener {
             val name = binding.taskNameEdit.text.toString()
             val notes = binding.taskNotesEdit.text.toString()
             val hasDueDate = true
+            val id = idCreator().toLong()
             val isCompleted = binding.switch1.isChecked
             val dueDate = ""
-            val todo = ToDo(name, notes, hasDueDate, isCompleted, dueDate)
+            val todo = ToDo(name, notes, id, hasDueDate, isCompleted, dueDate)
             FirebaseApp.initializeApp(this)
 
 

@@ -24,8 +24,12 @@ class ToDoAdapter(private val todos: List<ToDo>) :
 
       init{
          editButton.setOnClickListener{
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
                val intent = Intent(itemView.context, TodoDetailsActivity::class.java)
+               intent.putExtra("todo_id", todos[position].id)
                itemView.context.startActivity(intent)
+            }
          }
       }
    }
@@ -40,7 +44,10 @@ class ToDoAdapter(private val todos: List<ToDo>) :
       val todo = todos[position]
       holder.nameTextView.text = todo.name
       holder.dateTextView.text = todo.dueDate
-      holder.completedSwitch.isChecked = todo.isCompleted
+
+      holder.completedSwitch.setChecked(todo.isCompleted ?: true)
+
+      Log.d("TAG", todo.isCompleted.toString())
    }
 
    override fun getItemCount(): Int {
@@ -49,3 +56,5 @@ class ToDoAdapter(private val todos: List<ToDo>) :
 
 
 }
+
+

@@ -3,6 +3,7 @@ package com.lakehead.assignment_4
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
@@ -17,20 +18,19 @@ class ToDoCreateActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val updateButton: Button = findViewById(R.id.button)
-        val cancelButton: Button = findViewById(R.id.button3)
+        val updateButton: Button = findViewById(R.id.createButton)
+        val cancelButton: Button = findViewById(R.id.cancelButton)
 
         updateButton.setOnClickListener {
             val name = binding.taskNameEdit.text.toString()
             val notes = binding.taskNotesEdit.text.toString()
             val hasDueDate = true
             val isCompleted = binding.switch1.isChecked
-            var dueDate = ""
+            val dueDate = binding.calendarView.date.toString()
 
-            binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                val formattedDate = "$year-${month + 1}-$dayOfMonth"
-                dueDate = formattedDate
-            }
+
+
+            Log.d("date", dueDate)
 
 
             val todo = ToDo(name, notes, hasDueDate, isCompleted, dueDate)

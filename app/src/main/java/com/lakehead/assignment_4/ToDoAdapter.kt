@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log;
 import android.widget.Button
+import kotlin.math.log
 
 
 class ToDoAdapter(private val todos: List<ToDo>) :
@@ -27,7 +28,8 @@ class ToDoAdapter(private val todos: List<ToDo>) :
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
                val intent = Intent(itemView.context, TodoDetailsActivity::class.java)
-               intent.putExtra("todo_id", todos[position].id)
+               intent.putExtra("todo_id", todos[position].documentId.toString())
+               Log.i("ID", todos[position].documentId.toString())
                itemView.context.startActivity(intent)
             }
          }
@@ -45,9 +47,10 @@ class ToDoAdapter(private val todos: List<ToDo>) :
       holder.nameTextView.text = todo.name
       holder.dateTextView.text = todo.dueDate
 
-      holder.completedSwitch.setChecked(todo.isCompleted ?: true)
+      holder.completedSwitch.isChecked = todo.completed == true
 
-      Log.d("TAG", todo.isCompleted.toString())
+
+      Log.d("TAG", todo.completed.toString())
    }
 
    override fun getItemCount(): Int {

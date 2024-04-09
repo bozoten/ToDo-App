@@ -1,5 +1,6 @@
 package com.lakehead.assignment_4
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 
@@ -26,11 +27,18 @@ class DataManager {
             .addOnFailureListener { onComplete(false) }
     }
 
-    fun updateToDo(toDoId: String, updatedToDo: ToDo, onComplete: (Boolean) -> Unit) {
+    fun updateToDo(updatedToDo: ToDo, onComplete: (Boolean) -> Unit) {
+        Log.i("Update", updatedToDo.toString())
+        updatedToDo.documentId?.let{ collectionRef.document(it).update("name", updatedToDo.name, "completed", updatedToDo.completed, "notes", updatedToDo.notes, "hasDueDate", updatedToDo.hasDueDate, "dueDate", updatedToDo.dueDate) }
+        onComplete(true)
+    }
+
+    fun deleteToDo(toDoId: String, onComplete: (Boolean) -> Unit) {
         val documentRef = collectionRef.document(toDoId)
-        documentRef.update(toDoId, updatedToDo)
+        documentRef.delete()
             .addOnSuccessListener { onComplete(true) }
             .addOnFailureListener { onComplete(false) }
     }
+
 
 }

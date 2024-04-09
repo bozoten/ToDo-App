@@ -72,7 +72,7 @@ class TodoDetailsActivity : AppCompatActivity() {
         {
             val firestore = DataManager()
             val todo = ToDo(id, name, notes, hasDueDate, isCompleted, dueDate)
-            firestore.updateToDo(todo_id, todo) { isSuccess ->
+            firestore.updateToDo(todo) { isSuccess ->
                 if(isSuccess) {
                     println("Success!")
                 }
@@ -92,7 +92,24 @@ class TodoDetailsActivity : AppCompatActivity() {
 
     private fun performDelete()
     {
+        FirebaseApp.initializeApp(this)
 
+        val bundle = intent.extras
+        val todo_id = bundle!!.getString("todo_id")
+        val id = todo_id
+
+        if(id!=null)
+        {
+            val firestore = DataManager()
+            firestore.deleteToDo(todo_id) { isSuccess ->
+                if(isSuccess) {
+                    println("Success!")
+                }
+            }
+        }
+
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 

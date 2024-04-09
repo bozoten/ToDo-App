@@ -28,7 +28,6 @@ class ToDoCreateActivity : AppCompatActivity() {
             val name = binding.taskNameEdit.text.toString()
             val notes = binding.taskNotesEdit.text.toString()
             val hasDueDate = true
-            val id = idCreator().toString()
             val isCompleted = binding.switch1.isChecked
             val dueDate = binding.calendarView.date
 
@@ -40,7 +39,7 @@ class ToDoCreateActivity : AppCompatActivity() {
             val formattedDate: String = sdf.format(date)
 
 
-            val todo = ToDo(id, name, notes, hasDueDate, isCompleted, formattedDate)
+            val todo = ToDo(null, name, notes, hasDueDate, isCompleted, formattedDate)
             FirebaseApp.initializeApp(this)
 
 

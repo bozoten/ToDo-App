@@ -13,6 +13,10 @@ import java.util.Locale
 
 class TodoDetailsActivity : AppCompatActivity() {
     private lateinit var binding: TodoDetailsBinding
+    private var initialName: String = ""
+    private var initialNotes: String = ""
+    private var initialHasDueDate: Boolean = false
+    private var initialIsCompleted: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = TodoDetailsBinding.inflate(layoutInflater)
@@ -24,10 +28,15 @@ class TodoDetailsActivity : AppCompatActivity() {
             val firestore = DataManager()
             firestore.getToDo(todoId) { todo ->
                 if (todo != null) {
-                    binding.taskNameEdit.setText(todo.name)
-                    binding.taskNotesEdit.setText(todo.notes)
-                    binding.switch1.isChecked = todo.completed == true
-                    binding.switch2.isChecked = todo.hasDueDate == true
+                    initialName = todo.name
+                    initialNotes = todo.notes
+                    initialHasDueDate = todo.hasDueDate ?: false
+                    initialIsCompleted = todo.completed ?: false
+
+                    binding.taskNameEdit.setText(initialName)
+                    binding.taskNotesEdit.setText(initialNotes)
+                    binding.switch1.isChecked = initialIsCompleted
+                    binding.switch2.isChecked = initialHasDueDate
                 }
             }
         }
@@ -45,7 +54,11 @@ class TodoDetailsActivity : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
-            showConfirmationDialog("Cancel", "Are you sure you want to cancel?", "Cancel")
+            if (checkForUnsavedChanges()) {
+                showConfirmationDialog("Cancel", "Are you sure you want to discard changes?", "Cancel")
+            } else {
+                performCancel()
+            }
         }
     }
 
@@ -73,10 +86,9 @@ class TodoDetailsActivity : AppCompatActivity() {
     {
         val name = binding.taskNameEdit.text.toString()
         val notes = binding.taskNotesEdit.text.toString()
-        val hasDueDate = true
+        val hasDueDate = binding.switch2.isChecked
 
         val isCompleted = binding.switch1.isChecked
-
 
         FirebaseApp.initializeApp(this)
         val bundle = intent.extras
@@ -153,7 +165,17 @@ class TodoDetailsActivity : AppCompatActivity() {
         finish()
     }
 
+    private fun checkForUnsavedChanges(): Boolean {
+        val currentName = binding.taskNameEdit.text.toString()
+        val currentNotes = binding.taskNotesEdit.text.toString()
+        val currentHasDueDate = binding.switch2.isChecked
+        val currentIsCompleted = binding.switch1.isChecked
 
+        return (currentName != initialName ||
+                currentNotes != initialNotes ||
+                currentHasDueDate != initialHasDueDate ||
+                currentIsCompleted != initialIsCompleted)
+    }
 
 
 

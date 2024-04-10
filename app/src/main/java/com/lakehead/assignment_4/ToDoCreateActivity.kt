@@ -27,8 +27,7 @@ class ToDoCreateActivity : AppCompatActivity() {
         updateButton.setOnClickListener {
             val name = binding.taskNameEdit.text.toString()
             val notes = binding.taskNotesEdit.text.toString()
-            val hasDueDate = true
-            val isCompleted = binding.switch1.isChecked
+            val hasDueDate = binding.switch2.isChecked
 
 
             if(binding.switch2.isChecked)
@@ -40,7 +39,7 @@ class ToDoCreateActivity : AppCompatActivity() {
 
                 val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val formattedDate: String = sdf.format(date)
-                val todo = ToDo(null, name, notes, hasDueDate, isCompleted, formattedDate)
+                val todo = ToDo(null, name, notes, hasDueDate, false, formattedDate)
                 FirebaseApp.initializeApp(this)
 
 
@@ -59,7 +58,7 @@ class ToDoCreateActivity : AppCompatActivity() {
             {
                 val dueDate = ""
 
-                val todo = ToDo(null, name, notes, hasDueDate, isCompleted, dueDate)
+                val todo = ToDo(null, name, notes, hasDueDate, false, dueDate)
                 FirebaseApp.initializeApp(this)
 
 

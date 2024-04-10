@@ -24,6 +24,7 @@ class TodoDetailsActivity : AppCompatActivity() {
                     binding.taskNameEdit.setText(todo.name)
                     binding.taskNotesEdit.setText(todo.notes)
                     binding.switch1.isChecked = todo.completed == true
+                    binding.switch2.isChecked = todo.hasDueDate == true
                 }
             }
         }

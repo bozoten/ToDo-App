@@ -29,29 +29,56 @@ class ToDoCreateActivity : AppCompatActivity() {
             val notes = binding.taskNotesEdit.text.toString()
             val hasDueDate = true
             val isCompleted = binding.switch1.isChecked
-            val dueDate = binding.calendarView.date
-
-            val unixTime = dueDate
-
-            val date = Date(unixTime)
-
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val formattedDate: String = sdf.format(date)
 
 
-            val todo = ToDo(null, name, notes, hasDueDate, isCompleted, formattedDate)
-            FirebaseApp.initializeApp(this)
+            if(binding.switch2.isChecked)
+            {
+                val dueDate = binding.calendarView.date
+                val unixTime = dueDate
+
+                val date = Date(unixTime)
+
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val formattedDate: String = sdf.format(date)
+                val todo = ToDo(null, name, notes, hasDueDate, isCompleted, formattedDate)
+                FirebaseApp.initializeApp(this)
 
 
-            val firestore = DataManager()
+                val firestore = DataManager()
 
-            firestore.addToDo(todo) { isSuccess ->
-                if(isSuccess) {
-                    println("Success!")
+                firestore.addToDo(todo) { isSuccess ->
+                    if(isSuccess) {
+                        println("Success!")
+                    }
                 }
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+
             }
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            else
+            {
+                val dueDate = ""
+
+                val todo = ToDo(null, name, notes, hasDueDate, isCompleted, dueDate)
+                FirebaseApp.initializeApp(this)
+
+
+                val firestore = DataManager()
+
+                firestore.addToDo(todo) { isSuccess ->
+                    if(isSuccess) {
+                        println("Success!")
+                    }
+                }
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+
+            }
+
+
+
+
+
         }
 
         cancelButton.setOnClickListener() {

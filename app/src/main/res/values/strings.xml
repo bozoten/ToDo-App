@@ -9,4 +9,5 @@
     <string name="ok">OK</string>
     <string name="title_prompt">Task: </string>
     <string name="desc_prompt">Notes: </string>
+    <string name="opacity">100%</string>
 </resources>

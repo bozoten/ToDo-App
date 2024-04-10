@@ -49,6 +49,10 @@ class DataManager {
         onComplete(true)
     }
 
+    fun updateCompleted(updatedToDo: ToDo, onComplete: (Boolean) -> Unit) {
+        updatedToDo.documentId?.let{ collectionRef.document(it).update("completed", updatedToDo.completed) }
+    }
+
     fun deleteToDo(toDoId: String, onComplete: (Boolean) -> Unit) {
         val documentRef = collectionRef.document(toDoId)
         documentRef.delete()

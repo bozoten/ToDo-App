@@ -16,7 +16,6 @@ import kotlin.math.log
 
 class ToDoAdapter(private val todos: List<ToDo>) :
    RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
-
    @SuppressLint("UseSwitchCompatOrMaterialCode")
    inner class ToDoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
       val nameTextView: TextView = itemView.findViewById(R.id.taskName)
@@ -42,6 +41,14 @@ class ToDoAdapter(private val todos: List<ToDo>) :
                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.backgroundColor))
             }
 
+            val updatedToDo = todos[adapterPosition].copy(completed = isChecked)
+            DataManager().updateCompleted(updatedToDo) { success ->
+               if (success) {
+                  println("ToDo updated successfully")
+               } else {
+                  println("Failed to update ToDo")
+               }
+            }
 
          }
       }

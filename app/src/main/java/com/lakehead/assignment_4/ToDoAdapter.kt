@@ -13,6 +13,14 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import kotlin.math.log
 
+/**
+ * Filename: ToDoAdapterActivity.kt
+ * Project: Assignment 4
+ * Author's name: Shridhara Pavel Rahul Uma
+ * Student Id: 1175516
+ * Date: 09-04-2024
+ * Description: A fully functional Todo app
+ */
 
 class ToDoAdapter(private val todos: List<ToDo>) :
    RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {

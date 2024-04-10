@@ -4,6 +4,15 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 
+/**
+ * Filename: Datamanager.kt
+ * Project: Assignment 4
+ * Author's name: Shridhara Pavel Rahul Uma
+ * Student Id: 1175516
+ * Date: 09-04-2024
+ * Description: A fully functional Todo app
+ */
+
 class DataManager {
     private val db = FirebaseFirestore.getInstance()
 

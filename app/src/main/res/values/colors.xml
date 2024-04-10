@@ -6,4 +6,5 @@
     <color name="buttonColour">#FF5C8D</color>
     <color name="completedColor">#FFC1CC</color>
     <color name="backgroundColor">#ffffff</color>
+    <color name="calendarColor"></color>
 </resources>

@@ -14,7 +14,7 @@ import com.lakehead.assignment_4.databinding.ActivityMainBinding
  * Author's name: Shridhara Pavel Rahul Uma
  * Student Id: 1175516
  * Date: 24-03-2024
- * Description: Backend
+ * Description: A fully functional Todo app
  */
 
 class MainActivity : AppCompatActivity() {

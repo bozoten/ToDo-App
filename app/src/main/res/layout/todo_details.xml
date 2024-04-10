@@ -94,8 +94,7 @@
                 <CalendarView
                     android:id="@+id/calendarView"
                     android:layout_width="213dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black" />
+                    android:layout_height="wrap_content" />
 
                 <Switch
                     android:id="@+id/switch2"

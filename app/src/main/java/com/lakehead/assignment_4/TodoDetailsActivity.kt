@@ -5,11 +5,21 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.FirebaseApp
 import com.lakehead.assignment_4.databinding.TodoDetailsBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
+/**
+ * Filename: ToDoDetailsActivity.kt
+ * Project: Assignment 4
+ * Author's name: Shridhara Pavel Rahul Uma
+ * Student Id: 1175516
+ * Date: 09-04-2024
+ * Description: A fully functional Todo app, This file deals with the to do details
+ */
 
 class TodoDetailsActivity : AppCompatActivity() {
     private lateinit var binding: TodoDetailsBinding
@@ -26,13 +36,16 @@ class TodoDetailsActivity : AppCompatActivity() {
 
         if (todoId != null) {
             val firestore = DataManager()
+            // Fetches todo details from Firestore
             firestore.getToDo(todoId) { todo ->
                 if (todo != null) {
+                    // Storing initial todo details
                     initialName = todo.name
                     initialNotes = todo.notes
                     initialHasDueDate = todo.hasDueDate ?: false
                     initialIsCompleted = todo.completed ?: false
 
+                    // Sets initial vals to Ui elements
                     binding.taskNameEdit.setText(initialName)
                     binding.taskNotesEdit.setText(initialNotes)
                     binding.switch1.isChecked = initialIsCompleted
@@ -41,11 +54,14 @@ class TodoDetailsActivity : AppCompatActivity() {
             }
         }
 
+        // finds buttons by id and assigns it to var
         val updateButton: Button = findViewById(R.id.button)
         val deleteButton: Button = findViewById(R.id.button2)
         val cancelButton: Button = findViewById(R.id.button3)
 
+        // Click listeners for buttons
         updateButton.setOnClickListener {
+            // shows a confirmation dialog for update
             showConfirmationDialog("Update", "Are you sure you want to update?", "Update")
         }
 
@@ -54,6 +70,7 @@ class TodoDetailsActivity : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
+            // Checking for unsaved changes before performing cancel action
             if (checkForUnsavedChanges()) {
                 showConfirmationDialog("Cancel", "Are you sure you want to discard changes?", "Cancel")
             } else {
@@ -62,12 +79,14 @@ class TodoDetailsActivity : AppCompatActivity() {
         }
     }
 
+    // Function to show confirmation dialog
     private fun showConfirmationDialog(title: String, message: String, action: String) {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle(title)
         alertDialogBuilder.setMessage(message)
 
         alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            // Performs action based on the user selection
             when (action) {
                 "Update" -> performUpdate()
                 "Delete" -> performDelete()
@@ -82,8 +101,10 @@ class TodoDetailsActivity : AppCompatActivity() {
         alertDialogBuilder.create().show()
     }
 
+    // Function to perform update action
     private fun performUpdate()
     {
+        // Getting updated values from UI elements
         val name = binding.taskNameEdit.text.toString()
         val notes = binding.taskNotesEdit.text.toString()
         val hasDueDate = binding.switch2.isChecked
@@ -97,6 +118,7 @@ class TodoDetailsActivity : AppCompatActivity() {
 
         if(binding.switch2.isChecked)
         {
+            // If the user wants to add a due date it formats it from unix time to normal date format
             val dueDate = binding.calendarView.date
             val unixTime = dueDate
 
@@ -107,6 +129,7 @@ class TodoDetailsActivity : AppCompatActivity() {
 
             if(id!=null)
             {
+                // Updating todo in Firestore with due date
                 val firestore = DataManager()
                 val todo = ToDo(id, name, notes, hasDueDate, isCompleted, formattedDate)
                 firestore.updateToDo(todo) { isSuccess ->
@@ -118,6 +141,7 @@ class TodoDetailsActivity : AppCompatActivity() {
         }
         else
         {
+            // if the user chose not to add a due date it updates the db without a duedate
             val dueDate = ""
             if(id!=null)
             {

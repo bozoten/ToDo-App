@@ -6,12 +6,21 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.FirebaseApp
 import com.lakehead.assignment_4.databinding.TodoCreateBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * Filename: ToDoCreateActivity.kt
+ * Project: Assignment 4
+ * Author's name: Shridhara Pavel Rahul Uma
+ * Student Id: 1175516
+ * Date: 09-04-2024
+ * Description: A fully functional Todo app
+ */
 
 class ToDoCreateActivity : AppCompatActivity() {
     private lateinit var binding: TodoCreateBinding

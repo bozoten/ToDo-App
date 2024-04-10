@@ -7,6 +7,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
 import com.lakehead.assignment_4.databinding.TodoDetailsBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class TodoDetailsActivity : AppCompatActivity() {
     private lateinit var binding: TodoDetailsBinding
@@ -73,23 +76,49 @@ class TodoDetailsActivity : AppCompatActivity() {
         val hasDueDate = true
 
         val isCompleted = binding.switch1.isChecked
-        val dueDate = ""
+
 
         FirebaseApp.initializeApp(this)
         val bundle = intent.extras
         val todo_id = bundle!!.getString("todo_id")
         val id = todo_id
 
-        if(id!=null)
+        if(binding.switch2.isChecked)
         {
-            val firestore = DataManager()
-            val todo = ToDo(id, name, notes, hasDueDate, isCompleted, dueDate)
-            firestore.updateToDo(todo) { isSuccess ->
-                if(isSuccess) {
-                    println("Success!")
+            val dueDate = binding.calendarView.date
+            val unixTime = dueDate
+
+            val date = Date(unixTime)
+
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formattedDate: String = sdf.format(date)
+
+            if(id!=null)
+            {
+                val firestore = DataManager()
+                val todo = ToDo(id, name, notes, hasDueDate, isCompleted, formattedDate)
+                firestore.updateToDo(todo) { isSuccess ->
+                    if(isSuccess) {
+                        println("Success!")
+                    }
                 }
             }
         }
+        else
+        {
+            val dueDate = ""
+            if(id!=null)
+            {
+                val firestore = DataManager()
+                val todo = ToDo(id, name, notes, hasDueDate, isCompleted, dueDate)
+                firestore.updateToDo(todo) { isSuccess ->
+                    if(isSuccess) {
+                        println("Success!")
+                    }
+                }
+            }
+        }
+
 
         startActivity(Intent(this, MainActivity::class.java))
         finish()
